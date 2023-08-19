@@ -1,6 +1,6 @@
-package com.keroro.chowder.domain.entity.PO;
+package com.keroro.chowder.domain.entity.VO;
 
-import io.swagger.annotations.ApiModel;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 /**
@@ -9,8 +9,8 @@ import lombok.Data;
  * @date: 2023年04月27日 11:29
  */
 @Data
-@ApiModel(value = "用户", description = "用户实体类")
-public class User {
+@Schema(name = "UserVO", description = "用户实体类")
+public class UserVO {
 
     private String id;
 

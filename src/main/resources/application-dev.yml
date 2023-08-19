@@ -7,6 +7,14 @@ spring:
     username: root
     password: rootroot
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+springdoc:
+  api-docs:
+    enabled: true
+  packages-to-scan:
+    - com.keroro.chowder.dao.po
+    - com.keroro.chowder.web.controller
+    - com.keroro.chowder.domain.entity
 #  mvc:
 #    pathmatch:
 #      matching-strategy: ANT_PATH_MATCHER
