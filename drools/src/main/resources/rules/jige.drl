@@ -1,0 +1,10 @@
+package rules
+import com.keroro.chowder.domain.entity.vo.StudentVO
+dialect  "java"
+
+rule "jige"
+    when
+        StudentVO(score >= 60)
+    then
+        System.out.println("触发jige规则");
+end

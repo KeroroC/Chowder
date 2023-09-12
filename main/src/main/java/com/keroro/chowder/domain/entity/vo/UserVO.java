@@ -1,4 +1,4 @@
-package com.keroro.chowder.domain.entity.VO;
+package com.keroro.chowder.domain.entity.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
