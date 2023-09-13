@@ -1,0 +1,18 @@
+package rules
+import java.util.ArrayList
+dialect  "java"
+
+global java.util.List list
+
+rule "global_1"
+    when
+    then
+        list.add("1");
+        System.out.println(list);
+end
+
+rule "global_2"
+    when
+    then
+        System.out.println(list);
+end

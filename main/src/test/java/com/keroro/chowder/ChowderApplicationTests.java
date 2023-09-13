@@ -4,11 +4,13 @@ import com.drools.core.KieTemplate;
 import com.keroro.chowder.dao.mapper.GachaRecordMapper;
 import com.keroro.chowder.dao.po.GachaRecordPO;
 import com.keroro.chowder.domain.entity.vo.StudentVO;
+import org.drools.core.base.RuleNameEqualsAgendaFilter;
 import org.junit.jupiter.api.Test;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -75,12 +77,18 @@ class ChowderApplicationTests {
 
 	@Test
 	public void testKie() {
-		KieSession kieSession = kieTemplate.getKieSession("jige.drl");
 		StudentVO student = new StudentVO();
-		student.setScore(78F);
-		kieSession.insert(student);
-		kieSession.fireAllRules();
-		kieSession.dispose();
+		student.setScore(44F);
+		System.out.println(matchRule("global.drl", student));
 	}
 
+	private <T> T matchRule(String ruleFile, T object) {
+		KieSession kieSession = kieTemplate.getKieSession(ruleFile);
+		List<String> list = new ArrayList<>();
+		kieSession.setGlobal("list", list);
+		kieSession.insert(object);
+		kieSession.fireAllRules();
+		kieSession.dispose();
+		return object;
+	}
 }

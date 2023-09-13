@@ -5,8 +5,8 @@
 # linux 系统注意使用斜杠，如：/usr/local/drl/
 spring:
   drools:
-#    path: classpath:rules/**/*.drl
-    path: /Users/wangpeng/MyCodeSpace/rules/
+    path: classpath:rules/**/*.drl
+#    path: /Users/wangpeng/MyCodeSpace/rules/
 ################## 可选属性 ##################
     # 也可以指定全局的mode，选择stream或cloud（默认stream模式）
     mode: stream
