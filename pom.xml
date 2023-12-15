@@ -20,7 +20,7 @@
     <inceptionYear>2023</inceptionYear>
 
     <modules>
-        <module>main</module>
+        <module>chowder-main</module>
         <module>arknights</module>
         <module>drools</module>
     </modules>
@@ -101,14 +101,5 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

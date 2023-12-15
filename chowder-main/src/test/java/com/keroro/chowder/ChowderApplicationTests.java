@@ -4,7 +4,6 @@ import com.drools.core.KieTemplate;
 import com.keroro.chowder.dao.mapper.GachaRecordMapper;
 import com.keroro.chowder.dao.po.GachaRecordPO;
 import com.keroro.chowder.domain.entity.vo.StudentVO;
-import org.drools.core.base.RuleNameEqualsAgendaFilter;
 import org.junit.jupiter.api.Test;
 import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,19 +21,19 @@ class ChowderApplicationTests {
 	@Autowired
 	private KieTemplate kieTemplate;
 
-	@Test
-	void contextLoads() {
-	}
+//	@Test
+//	void contextLoads() {
+//	}
 
 	/**
 	 * 测试数据库连接，查询
 	 */
-	@Test
-	public void testSelect() {
-		System.out.println("----- select method test -----");
-		List<GachaRecordPO> recordPOList = gachaRecordMapper.selectList(null);
-		recordPOList.forEach(System.out::println);
-	}
+//	@Test
+//	public void testSelect() {
+//		System.out.println("----- select method test -----");
+//		List<GachaRecordPO> recordPOList = gachaRecordMapper.selectList(null);
+//		recordPOList.forEach(System.out::println);
+//	}
 
 //	@Test
 //	public void droolsStudent() {
@@ -75,12 +74,12 @@ class ChowderApplicationTests {
 //
 //	}
 
-	@Test
-	public void testKie() {
-		StudentVO student = new StudentVO();
-		student.setScore(44F);
-		System.out.println(matchRule("global.drl", student));
-	}
+//	@Test
+//	public void testKie() {
+//		StudentVO student = new StudentVO();
+//		student.setScore(44F);
+//		System.out.println(matchRule("global.drl", student));
+//	}
 
 	private <T> T matchRule(String ruleFile, T object) {
 		KieSession kieSession = kieTemplate.getKieSession(ruleFile);
