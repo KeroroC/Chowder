@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @Description: 测试Swagger
- * @author: wangpeng
- * @date: 2023年04月21日 21:43
+ * 测试Swagger
+ * @author wangpeng
+ * @since 2023年04月21日 21:43
  */
 @Controller
 @RequestMapping("/test")

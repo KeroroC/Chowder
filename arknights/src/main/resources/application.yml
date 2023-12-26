@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: Chowder-Arknights
+  profiles:
+    active: dev
