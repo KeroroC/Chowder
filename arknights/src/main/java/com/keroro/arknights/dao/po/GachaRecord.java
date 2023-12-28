@@ -1,4 +1,4 @@
-package com.keroro.chowder.dao.po;
+package com.keroro.arknights.dao.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -8,12 +8,12 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.util.Date;
 
 /**
- * @Description: 抽卡记录表
- * @author: wangpeng
- * @date: 2022年07月05日 22:14
+ * 抽卡记录表
+ * @author wangpeng
+ * @since 2022年07月05日 22:14
  */
-@TableName("GACHA_RECORD")
-public class GachaRecordPO {
+@TableName("T_GACHA_RECORD")
+public class GachaRecord {
 
     /**
      * 抽卡记录表主键
@@ -68,6 +68,9 @@ public class GachaRecordPO {
      */
     @TableField("UID")
     private String playerUID;
+
+    @TableField("ARK_ACCOUNT")
+    private String arkAccount;
 
     public String getIdGachaRecord() {
         return idGachaRecord;
@@ -139,5 +142,13 @@ public class GachaRecordPO {
 
     public void setPlayerUID(String playerUID) {
         this.playerUID = playerUID;
+    }
+
+    public String getArkAccount() {
+        return arkAccount;
+    }
+
+    public void setArkAccount(String arkAccount) {
+        this.arkAccount = arkAccount;
     }
 }
