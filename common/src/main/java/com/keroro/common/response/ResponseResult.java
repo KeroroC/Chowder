@@ -77,4 +77,8 @@ public class ResponseResult<T> {
     public static <T> ResponseResult<T> fail(T data) {
         return new ResponseResult<>(ResponseCode.FAIL.success(), ResponseCode.FAIL.code(), ResponseCode.FAIL.message(), data);
     }
+
+    public static <T> ResponseResult<T> fail(boolean success, int code, String message, T data) {
+        return new ResponseResult<>(success, code, message, data);
+    }
 }

@@ -3,7 +3,8 @@ package com.keroro.common.response;
 public enum ResponseCode implements ResultCode {
 
     SUCCESS(true, 0, "操作成功"),
-    FAIL(false, -1, "操作失败");
+    FAIL(false, -1, "操作失败"),
+    INVALID_PARAM(false, 10000, "参数不合法");
 
     final boolean success;
 
