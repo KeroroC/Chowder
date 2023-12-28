@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Data;
 
 import java.util.Date;
 
@@ -13,7 +12,6 @@ import java.util.Date;
  * @author: wangpeng
  * @date: 2022年07月05日 22:14
  */
-@Data
 @TableName("GACHA_RECORD")
 public class GachaRecordPO {
 
@@ -70,4 +68,76 @@ public class GachaRecordPO {
      */
     @TableField("UID")
     private String playerUID;
+
+    public String getIdGachaRecord() {
+        return idGachaRecord;
+    }
+
+    public void setIdGachaRecord(String idGachaRecord) {
+        this.idGachaRecord = idGachaRecord;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public String getPool() {
+        return pool;
+    }
+
+    public void setPool(String pool) {
+        this.pool = pool;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getRarity() {
+        return rarity;
+    }
+
+    public void setRarity(String rarity) {
+        this.rarity = rarity;
+    }
+
+    public boolean isNew() {
+        return isNew;
+    }
+
+    public void setNew(boolean aNew) {
+        isNew = aNew;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getPlayerUID() {
+        return playerUID;
+    }
+
+    public void setPlayerUID(String playerUID) {
+        this.playerUID = playerUID;
+    }
 }

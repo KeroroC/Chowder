@@ -1,6 +1,5 @@
 package com.keroro.arknights.config;
 
-import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -8,9 +7,16 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author wangpeng
  * @since 2023年12月27日 10:42
  */
-@Data
 @ConfigurationProperties(prefix = "arknights")
 public class ArknightsProperties {
 
     private String domainName;
+
+    public String getDomainName() {
+        return domainName;
+    }
+
+    public void setDomainName(String domainName) {
+        this.domainName = domainName;
+    }
 }
