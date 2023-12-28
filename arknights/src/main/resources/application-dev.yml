@@ -1,12 +1,13 @@
 server:
   port: 8100
-
-arknights:
-  domain-name: https://as.hypergryph.com
-
+logging:
+  file:
+    name: /Users/wangpeng/MyCodeSpace/logs/arknights.log
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/arknights
     username: root
     password: rootroot
     driver-class-name: com.mysql.cj.jdbc.Driver
+arknights:
+  domain-name: https://as.hypergryph.com
