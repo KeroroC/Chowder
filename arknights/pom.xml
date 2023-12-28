@@ -24,6 +24,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.keroro</groupId>
+            <artifactId>common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-cache</artifactId>
         </dependency>
