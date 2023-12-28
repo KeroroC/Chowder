@@ -2,7 +2,7 @@ package com.keroro.chowder.domain.entity.vo;
 
 /**
  * @author wangpeng
- * @date 2023年09月12日 14:36
+ * @since 2023年09月12日 14:36
  */
 public class StudentVO {
 

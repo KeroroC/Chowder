@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
  * @author Keroro
  */
 @SpringBootApplication
-@ComponentScan("com.drools")
 @MapperScan("com.keroro.chowder.dao.*")
 public class ChowderApplication {
 
