@@ -39,4 +39,19 @@ public class AccountController {
             return ResponseResult.fail(false);
         }
     }
+
+    /**
+     * 登录ark账号
+     * @param arkAccount 账号
+     * @return 是否成功: ResponseResult
+     */
+    @GetMapping("/arkLogin")
+    public ResponseResult<String> arkLogin(@NotBlank String arkAccount) {
+        boolean res = arkAccountService.arkLogin(arkAccount);
+        if (res) {
+            return ResponseResult.success("登录成功");
+        } else {
+            return ResponseResult.fail("登录失败");
+        }
+    }
 }
