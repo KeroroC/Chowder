@@ -22,6 +22,10 @@ public class PhoneTokenCache {
         phoneTokenCache.put(phone, token);
     }
 
+    public void remove(String phone) {
+        phoneTokenCache.remove(phone);
+    }
+
     public String getToken(String phone) {
         return phoneTokenCache.get(phone);
     }

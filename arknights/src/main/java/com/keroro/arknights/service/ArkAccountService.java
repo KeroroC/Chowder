@@ -102,6 +102,8 @@ public class ArkAccountService {
             throw new InterfaceDataException("ark登出接口数据异常，json无法解析");
         }
 
+        phoneTokenCache.remove(arkAccount);
+
         // 3-登录已过期，0-OK
         if (node.get("status").asInt() == 3) {
             return "登录已过期，无需登出";
