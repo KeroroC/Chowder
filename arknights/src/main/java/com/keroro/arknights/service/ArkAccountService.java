@@ -12,6 +12,7 @@ import com.keroro.arknights.config.ArknightsProperties;
 import com.keroro.arknights.dao.ArkAccountComponent;
 import com.keroro.arknights.dao.po.ArkAccount;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +43,7 @@ public class ArkAccountService {
      * @param arkPassword 密码
      * @return boolean: 是否成功
      */
+    @Transactional(rollbackFor = Exception.class)
     public boolean addAccount(String arkAccount, String arkPassword) {
         return arkAccountComponent.save(new ArkAccount(arkAccount, arkPassword));
     }
@@ -52,7 +54,7 @@ public class ArkAccountService {
      * @return 是否成功: boolean
      */
     public boolean arkLogin(String arkAccount) {
-        String loginUrl = arknightsProperties.getDomainName() + UrlConstant.USER_AUTH_URL_PREFIX + "/token_by_phone_password";
+        String loginUrl = arknightsProperties.getDomainAs() + UrlConstant.USER_AUTH_URL_PREFIX + "/token_by_phone_password";
 
         Optional<ArkAccount> account = Optional.ofNullable(arkAccountComponent.lambdaQuery()
                 .eq(ArkAccount::getArkAccount, arkAccount)
@@ -78,5 +80,32 @@ public class ArkAccountService {
         }
 
         return true;
+    }
+
+    /**
+     * 登出ark账号
+     * @param arkAccount 账号
+     */
+    public String arkLogout(String arkAccount) {
+        Optional<String> token = Optional.ofNullable(phoneTokenCache.getToken(arkAccount));
+        token.orElseThrow(() -> new RuntimeException("没有此账号的token，不需要登出"));
+
+        String logoutUrl = arknightsProperties.getDomainAs() + UrlConstant.USER_INFO_URL_PREFIX + "/logout";
+        Map<String, Object> params = new HashMap<>();
+        params.put("token", token.get());
+        String content = HttpUtil.post(logoutUrl, params);
+
+        JsonNode node;
+        try {
+            node = new ObjectMapper().readTree(content);
+        } catch (JsonProcessingException e) {
+            throw new InterfaceDataException("ark登出接口数据异常，json无法解析");
+        }
+
+        // 3-登录已过期，0-OK
+        if (node.get("status").asInt() == 3) {
+            return "登录已过期，无需登出";
+        }
+        return "登出成功";
     }
 }

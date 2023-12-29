@@ -54,4 +54,14 @@ public class AccountController {
             return ResponseResult.fail("登录失败");
         }
     }
+
+    /**
+     * 登出ark账号
+     * @param arkAccount 账号
+     * @return 是否成功: ResponseResult
+     */
+    @GetMapping("/arkLogout")
+    public ResponseResult<String> arkLogout(@NotBlank String arkAccount) {
+        return ResponseResult.success(arkAccountService.arkLogout(arkAccount));
+    }
 }

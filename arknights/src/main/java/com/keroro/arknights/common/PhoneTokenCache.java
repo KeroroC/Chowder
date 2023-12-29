@@ -1,9 +1,9 @@
 package com.keroro.arknights.common;
 
-import cn.hutool.cache.CacheUtil;
-import cn.hutool.cache.impl.TimedCache;
-import cn.hutool.core.date.DateUnit;
 import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 手机号和对应token的缓存
@@ -14,13 +14,9 @@ import org.springframework.stereotype.Component;
 public class PhoneTokenCache {
 
     /**
-     * 存储手机号和对应token的缓存，20min过期
+     * 存储手机号和对应token的缓存
      */
-    private final TimedCache<String, String> phoneTokenCache = CacheUtil.newTimedCache(DateUnit.MINUTE.getMillis() * 20);
-
-    public PhoneTokenCache() {
-        phoneTokenCache.schedulePrune(DateUnit.MINUTE.getMillis() * 20);
-    }
+    private final Map<String, String> phoneTokenCache = new HashMap<>(2);
 
     public void add(String phone, String token) {
         phoneTokenCache.put(phone, token);
