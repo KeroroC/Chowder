@@ -10,13 +10,33 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "arknights")
 public class ArknightsProperties {
 
-    private String domainName;
+    private String domainAs;
 
-    public String getDomainName() {
-        return domainName;
+    private String domainAk;
+
+    private String domainWeb;
+
+    public String getDomainAs() {
+        return domainAs;
     }
 
-    public void setDomainName(String domainName) {
-        this.domainName = domainName;
+    public void setDomainAs(String domainAs) {
+        this.domainAs = domainAs;
+    }
+
+    public String getDomainAk() {
+        return domainAk;
+    }
+
+    public void setDomainAk(String domainAk) {
+        this.domainAk = domainAk;
+    }
+
+    public String getDomainWeb() {
+        return domainWeb;
+    }
+
+    public void setDomainWeb(String domainWeb) {
+        this.domainWeb = domainWeb;
     }
 }

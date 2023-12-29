@@ -10,4 +10,6 @@ spring:
     password: rootroot
     driver-class-name: com.mysql.cj.jdbc.Driver
 arknights:
-  domain-name: https://as.hypergryph.com
+  domain-as: https://as.hypergryph.com
+  domain-ak: https://ak.hypergryph.com
+  domain-web: https://web-api.hypergryph.com
