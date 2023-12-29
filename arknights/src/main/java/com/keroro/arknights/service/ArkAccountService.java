@@ -1,9 +1,13 @@
 package com.keroro.arknights.service;
 
 import cn.hutool.http.HttpUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.keroro.arknights.common.PhoneTokenCache;
 import com.keroro.arknights.common.constant.UrlConstant;
 import com.keroro.arknights.common.exception.AccountNotFoundException;
+import com.keroro.arknights.common.exception.InterfaceDataException;
 import com.keroro.arknights.config.ArknightsProperties;
 import com.keroro.arknights.dao.ArkAccountComponent;
 import com.keroro.arknights.dao.po.ArkAccount;
@@ -60,7 +64,18 @@ public class ArkAccountService {
         params.put("password", account.get().getArkPwd());
         String content = HttpUtil.post(loginUrl, params);
 
-        phoneTokenCache.add(arkAccount, content);
+        JsonNode node;
+        try {
+            node = new ObjectMapper().readTree(content);
+        } catch (JsonProcessingException e) {
+            throw new InterfaceDataException("ark登录接口数据异常，json无法解析");
+        }
+
+        if (node.get("status").asInt() != 0) {
+            throw new RuntimeException(node.get("msg").asText());
+        } else {
+            phoneTokenCache.add(arkAccount, node.get("data").get("token").asText());
+        }
 
         return true;
     }
