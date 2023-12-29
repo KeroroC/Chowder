@@ -1,4 +1,4 @@
-package com.keroro.arknights.common.exception;
+package com.keroro.arknights.common.exception.handler;
 
 import com.keroro.common.response.ResponseCode;
 import com.keroro.common.response.ResponseResult;
