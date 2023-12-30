@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Validated
 @RestController
-@RequestMapping("/arknights/account")
+@RequestMapping("/account")
 public class AccountController {
 
     private final ArkAccountService arkAccountService;
