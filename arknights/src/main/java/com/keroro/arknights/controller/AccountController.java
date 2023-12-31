@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * arknights账号登录登出相关控制器
+ * Ark账号控制类
  * @author wangpeng
  * @since 2023年12月27日 10:35
  */

@@ -9,6 +9,11 @@ spring:
     username: root
     password: rootroot
     driver-class-name: com.mysql.cj.jdbc.Driver
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
 arknights:
   domain-as: https://as.hypergryph.com
   domain-ak: https://ak.hypergryph.com
