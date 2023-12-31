@@ -1,10 +1,12 @@
 package com.keroro.arknights.service;
 
+import cn.hutool.crypto.SecureUtil;
 import cn.hutool.http.HttpUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.keroro.arknights.common.PhoneTokenCache;
+import com.keroro.arknights.common.constant.CryptConstant;
 import com.keroro.arknights.common.constant.UrlConstant;
 import com.keroro.arknights.common.exception.AccountNotFoundException;
 import com.keroro.arknights.common.exception.InterfaceDataException;
@@ -45,6 +47,7 @@ public class ArkAccountService {
      */
     @Transactional(rollbackFor = Exception.class)
     public boolean addAccount(String arkAccount, String arkPassword) {
+        arkPassword = SecureUtil.aes(CryptConstant.AES_KEY.getBytes()).encryptBase64(arkPassword);
         return arkAccountComponent.save(new ArkAccount(arkAccount, arkPassword));
     }
 
@@ -63,7 +66,7 @@ public class ArkAccountService {
 
         Map<String, Object> params = new HashMap<>(2);
         params.put("phone", arkAccount);
-        params.put("password", account.get().getArkPwd());
+        params.put("password", SecureUtil.aes(CryptConstant.AES_KEY.getBytes()).decryptStr(account.get().getArkPwd()));
         String content = HttpUtil.post(loginUrl, params);
 
         JsonNode node;
