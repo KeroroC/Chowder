@@ -47,6 +47,9 @@ public class ArkAccountService {
      */
     @Transactional(rollbackFor = Exception.class)
     public boolean addAccount(String arkAccount, String arkPassword) {
+        Optional.ofNullable(arkAccountComponent.lambdaQuery().eq(ArkAccount::getArkAccount, arkAccount).one())
+                .ifPresent(item -> {throw new RuntimeException("账号已存在");});
+
         arkPassword = SecureUtil.aes(CryptConstant.AES_KEY.getBytes()).encryptBase64(arkPassword);
         return arkAccountComponent.save(new ArkAccount(arkAccount, arkPassword));
     }
