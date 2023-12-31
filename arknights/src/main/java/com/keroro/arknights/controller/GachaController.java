@@ -40,7 +40,7 @@ public class GachaController {
             @Parameter(name = "channelId", description = "渠道id", example = "1")
     })
     public ResponseResult<String> updateGacha(@NotBlank String arkAccount, @NotBlank Integer channelId) {
-        arkGachaService.updateGacha(arkAccount, channelId);
-        return ResponseResult.success("更新成功");
+        int count = arkGachaService.updateGacha(arkAccount, channelId);
+        return ResponseResult.success("更新成功，新增了" + count + "条记录");
     }
 }

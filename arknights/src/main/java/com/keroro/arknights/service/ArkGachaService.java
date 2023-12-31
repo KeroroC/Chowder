@@ -42,7 +42,7 @@ public class ArkGachaService {
      * @param channelId 渠道ID
      */
     @Transactional(rollbackFor = Exception.class)
-    public void updateGacha(String arkAccount, Integer channelId) {
+    public int updateGacha(String arkAccount, Integer channelId) {
         // 校验
         Optional<String> token = Optional.ofNullable(phoneTokenCache.getToken(arkAccount));
         token.orElseThrow(() -> new RuntimeException("没有此账号的token"));
@@ -58,8 +58,10 @@ public class ArkGachaService {
         int page = 1;
         JsonNode node = getGachaRecord(token.get(), page, channelId);
         if (node.get("code").asInt() == 0) {
+            // 更新了几条记录进去
+            int updatedCount = 0;
             // 保存
-            saveGachaRecord(arkAccount, latestTimestamp, node.get("data").get("list"));
+            updatedCount += saveGachaRecord(arkAccount, latestTimestamp, node.get("data").get("list"));
 
             // 还需要请求次数
             int requestTimes = 0;
@@ -71,10 +73,11 @@ public class ArkGachaService {
 
             while (requestTimes > 0) {
                 JsonNode nextNode = getGachaRecord(token.get(), ++page, channelId);
-                saveGachaRecord(arkAccount, latestTimestamp, nextNode.get("data").get("list"));
+                updatedCount += saveGachaRecord(arkAccount, latestTimestamp, nextNode.get("data").get("list"));
                 requestTimes--;
             }
 
+            return updatedCount;
         } else {
             throw new RuntimeException(node.get("msg").asText());
         }
@@ -86,7 +89,7 @@ public class ArkGachaService {
      * @param latestTimeStamp 最新的一条记录的时间戳
      * @param node 抽卡记录Node
      */
-    private void saveGachaRecord(String arkAccount, Integer latestTimeStamp, JsonNode node) {
+    private Integer saveGachaRecord(String arkAccount, Integer latestTimeStamp, JsonNode node) {
         if (node.isArray()) {
             List<GachaRecord> recordList = new ArrayList<>();
             // 遍历每一次抽卡
@@ -112,7 +115,9 @@ public class ArkGachaService {
                 }
             }
             gachaRecordComponent.saveBatch(recordList);
+            return recordList.size();
         }
+        return 0;
     }
 
     /**
