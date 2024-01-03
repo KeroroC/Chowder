@@ -18,20 +18,29 @@ public class GlobalExceptionHandler {
 
     Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
+    /**
+     * 处理接口参数校验异常
+     * @param e exception
+     * @return ResponseResult<String>
+     */
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseResult<String> handleConstraintViolationException(Exception e) {
+        logger.info(e.getMessage());
+
+        return ResponseResult.fail(ResponseCode.INVALID_PARAM.success(),
+                ResponseCode.INVALID_PARAM.code(),
+                ResponseCode.INVALID_PARAM.message(),
+                StringUtils.hasLength(e.getMessage()) ? e.getMessage() : ResponseCode.INVALID_PARAM.message());
+    }
+
+    /**
+     * 处理其他的所有异常
+     * @param e exception
+     * @return ResponseResult<String>
+     */
     @ExceptionHandler(Exception.class)
     public ResponseResult<String> handleException(Exception e) {
-        // 接口参数校验异常
-        if (e.getClass().equals(ConstraintViolationException.class)) {
-            logger.info(e.getMessage());
-
-            return ResponseResult.fail(ResponseCode.INVALID_PARAM.success(),
-                    ResponseCode.INVALID_PARAM.code(),
-                    ResponseCode.INVALID_PARAM.message(),
-                    StringUtils.hasLength(e.getMessage()) ? e.getMessage() : ResponseCode.INVALID_PARAM.message());
-        } else {
-            logger.error(e.getMessage(), e);
-            return ResponseResult.fail(StringUtils.hasLength(e.getMessage()) ? e.getMessage() : "操作失败");
-        }
-
+        logger.error(e.getMessage(), e);
+        return ResponseResult.fail(StringUtils.hasLength(e.getMessage()) ? e.getMessage() : "操作失败");
     }
 }
