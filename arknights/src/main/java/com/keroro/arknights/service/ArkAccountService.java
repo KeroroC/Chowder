@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -37,6 +38,14 @@ public class ArkAccountService {
         this.arkAccountComponent = arkAccountComponent;
         this.arknightsProperties = arknightsProperties;
         this.phoneTokenCache = phoneTokenCache;
+    }
+
+    /**
+     * 查询所有ark账号
+     * @return List<ArkAccount>: 账号列表
+     */
+    public List<ArkAccount> arkAccountList() {
+        return arkAccountComponent.list();
     }
 
     /**
