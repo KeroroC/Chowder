@@ -53,7 +53,7 @@ public class ArkGachaService {
         // 校验
         Optional<String> token = Optional.ofNullable(phoneTokenCache.getToken(arkAccount));
         if (token.isEmpty()) {
-            logger.warn("更新抽卡记录时遇到问题，没有此账号的token，尝试进行登录");
+            logger.warn("更新抽卡记录时遇到问题，没有账号" + arkAccount + "的token，尝试进行登录");
             if (arkAccountService.arkLogin(arkAccount)) {
                 logger.info("登录成功，继续更新抽卡记录");
                 token = Optional.ofNullable(phoneTokenCache.getToken(arkAccount));
