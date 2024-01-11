@@ -64,6 +64,14 @@ public class ArkAccountService {
     }
 
     /**
+     * 获取账号列表
+     * @return 账号list
+     */
+    public List<ArkAccount> list() {
+        return arkAccountComponent.list();
+    }
+
+    /**
      * 登录ark账号，并将token缓存下来
      * @param arkAccount 账号
      * @return 是否成功: boolean

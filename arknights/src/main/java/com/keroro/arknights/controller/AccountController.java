@@ -1,5 +1,6 @@
 package com.keroro.arknights.controller;
 
+import com.keroro.arknights.dao.po.ArkAccount;
 import com.keroro.arknights.service.ArkAccountService;
 import com.keroro.common.response.ResponseResult;
 import jakarta.validation.constraints.NotBlank;
@@ -7,6 +8,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Ark账号控制类
@@ -38,6 +41,15 @@ public class AccountController {
         } else {
             return ResponseResult.fail(false);
         }
+    }
+
+    /**
+     * 账号列表
+     * @return ResponseResult：是否成功
+     */
+    @GetMapping("/list")
+    public ResponseResult<List<ArkAccount>> addAccount() {
+        return ResponseResult.success(arkAccountService.list());
     }
 
     /**
