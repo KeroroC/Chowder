@@ -24,6 +24,7 @@
         <module>arknights</module>
         <module>drools</module>
         <module>common</module>
+        <module>miscellany</module>
     </modules>
 
     <properties>
