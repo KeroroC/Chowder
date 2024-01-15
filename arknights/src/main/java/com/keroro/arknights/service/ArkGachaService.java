@@ -28,16 +28,13 @@ public class ArkGachaService {
 
     private final Logger logger = LoggerFactory.getLogger(ArkGachaService.class);
 
-    private final PhoneTokenCache phoneTokenCache;
-
     private final GachaRecordComponent gachaRecordComponent;
 
     private final ArknightsProperties arknightsProperties;
 
     private final ArkAccountService arkAccountService;
 
-    public ArkGachaService(PhoneTokenCache phoneTokenCache, GachaRecordComponent gachaRecordComponent, ArknightsProperties arknightsProperties, ArkAccountService arkAccountService) {
-        this.phoneTokenCache = phoneTokenCache;
+    public ArkGachaService(GachaRecordComponent gachaRecordComponent, ArknightsProperties arknightsProperties, ArkAccountService arkAccountService) {
         this.gachaRecordComponent = gachaRecordComponent;
         this.arknightsProperties = arknightsProperties;
         this.arkAccountService = arkAccountService;
@@ -51,12 +48,12 @@ public class ArkGachaService {
     @Transactional(rollbackFor = Exception.class)
     public int updateGacha(String arkAccount, Integer channelId) {
         // 校验
-        Optional<String> token = Optional.ofNullable(phoneTokenCache.getToken(arkAccount));
+        Optional<String> token = Optional.ofNullable(PhoneTokenCache.INSTANCE.getToken(arkAccount));
         if (token.isEmpty()) {
             logger.warn("更新抽卡记录时遇到问题，没有账号" + arkAccount + "的token，尝试进行登录");
             if (arkAccountService.arkLogin(arkAccount)) {
                 logger.info("登录成功，继续更新抽卡记录");
-                token = Optional.ofNullable(phoneTokenCache.getToken(arkAccount));
+                token = Optional.ofNullable(PhoneTokenCache.INSTANCE.getToken(arkAccount));
             }
         }
         token.orElseThrow(() -> new RuntimeException("没有此账号的token"));

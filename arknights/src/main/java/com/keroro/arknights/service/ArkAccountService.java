@@ -32,12 +32,9 @@ public class ArkAccountService {
 
     private final ArknightsProperties arknightsProperties;
 
-    private final PhoneTokenCache phoneTokenCache;
-
-    public ArkAccountService(ArkAccountComponent arkAccountComponent, ArknightsProperties arknightsProperties, PhoneTokenCache phoneTokenCache) {
+    public ArkAccountService(ArkAccountComponent arkAccountComponent, ArknightsProperties arknightsProperties) {
         this.arkAccountComponent = arkAccountComponent;
         this.arknightsProperties = arknightsProperties;
-        this.phoneTokenCache = phoneTokenCache;
     }
 
     /**
@@ -99,7 +96,7 @@ public class ArkAccountService {
         if (node.get("status").asInt() != 0) {
             throw new RuntimeException(node.get("msg").asText());
         } else {
-            phoneTokenCache.add(arkAccount, node.get("data").get("token").asText());
+            PhoneTokenCache.INSTANCE.add(arkAccount, node.get("data").get("token").asText());
         }
 
         return true;
@@ -110,7 +107,7 @@ public class ArkAccountService {
      * @param arkAccount 账号
      */
     public String arkLogout(String arkAccount) {
-        Optional<String> token = Optional.ofNullable(phoneTokenCache.getToken(arkAccount));
+        Optional<String> token = Optional.ofNullable(PhoneTokenCache.INSTANCE.getToken(arkAccount));
         token.orElseThrow(() -> new RuntimeException("没有此账号的token，不需要登出"));
 
         String logoutUrl = arknightsProperties.getDomainAs() + UrlConstant.USER_INFO_URL_PREFIX + "/logout";
@@ -125,7 +122,7 @@ public class ArkAccountService {
             throw new InterfaceDataException("ark登出接口数据异常，json无法解析");
         }
 
-        phoneTokenCache.remove(arkAccount);
+        PhoneTokenCache.INSTANCE.remove(arkAccount);
 
         // 3-登录已过期，0-OK
         if (node.get("status").asInt() == 3) {

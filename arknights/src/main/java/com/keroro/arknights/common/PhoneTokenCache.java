@@ -1,7 +1,5 @@
 package com.keroro.arknights.common;
 
-import org.springframework.stereotype.Component;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,8 +8,8 @@ import java.util.Map;
  * @author wangpeng
  * @since 2023年12月27日 20:20
  */
-@Component
-public class PhoneTokenCache {
+public enum PhoneTokenCache {
+    INSTANCE;
 
     /**
      * 存储手机号和对应token的缓存
