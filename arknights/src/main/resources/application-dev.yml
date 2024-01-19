@@ -4,11 +4,17 @@ logging:
   file:
     name: /Users/wangpeng/MyCodeSpace/logs/arknights.log
 spring:
+  application:
+    name: Arknights
   datasource:
     url: jdbc:mysql://localhost:3306/arknights
     username: root
     password: rootroot
     driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 springdoc:
   api-docs:
     path: /api-docs
