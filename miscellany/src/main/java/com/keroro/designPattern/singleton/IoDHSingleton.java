@@ -13,7 +13,7 @@ public class IoDHSingleton implements Serializable {
     private static volatile boolean flag = false;
 
     private IoDHSingleton() {
-        // 通过flag强化Singleton属性
+        // 通过flag强化Singleton属性，防止通过反射创建对象，此时直接抛异常
         synchronized (IoDHSingleton.class) {
             if (!flag) {
                 flag = !flag;
