@@ -14,7 +14,9 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: 192.168.0.103:8848
+        username: keroro
+        password: keroro
 springdoc:
   api-docs:
     path: /api-docs
