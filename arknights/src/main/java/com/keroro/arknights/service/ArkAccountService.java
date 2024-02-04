@@ -69,6 +69,15 @@ public class ArkAccountService {
     }
 
     /**
+     * 添加账号token缓存
+     * @param arkAccount ark账号
+     * @param token token
+     */
+    public void addToken(String arkAccount, String token) {
+        PhoneTokenCache.INSTANCE.add(arkAccount, token);
+    }
+
+    /**
      * 登录ark账号，并将token缓存下来
      * @param arkAccount 账号
      * @return 是否成功: boolean
@@ -96,7 +105,7 @@ public class ArkAccountService {
         if (node.get("status").asInt() != 0) {
             throw new RuntimeException(node.get("msg").asText());
         } else {
-            PhoneTokenCache.INSTANCE.add(arkAccount, node.get("data").get("token").asText());
+            addToken(arkAccount, node.get("data").get("token").asText());
         }
 
         return true;
