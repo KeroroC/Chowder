@@ -1,19 +1,17 @@
 package com.keroro;
 
-import com.keroro.designPattern.factory.factoryMethod.BicycleFactory;
-import com.keroro.designPattern.factory.factoryMethod.CarFactory;
-import com.keroro.designPattern.factory.factoryMethod.Vehicle;
-import com.keroro.designPattern.factory.factoryMethod.VehicleFactory;
-import com.keroro.java.abstractClass.Zelda;
-import com.keroro.java.interfaceTest.InterfaceA;
-import com.keroro.java.interfaceTest.TestClass;
+import com.keroro.designPattern.factory.abstractFactory.Button;
+import com.keroro.designPattern.factory.abstractFactory.SkinFactory;
+import com.keroro.designPattern.factory.abstractFactory.TextField;
+import com.keroro.designPattern.factory.abstractFactory.WinterSkinFactory;
 
 public class Main {
     public static void main(String[] args) {
-
-        Zelda zelda = new Zelda();
-        System.out.println(zelda);
-        zelda.printSomething();
-        zelda.companyName();
+        // 具体工厂类可以优化到配置文件里去，就不需要改代码了
+        SkinFactory factory = new WinterSkinFactory();
+        Button button = factory.createButton();
+        TextField textField = factory.createTextField();
+        button.display();
+        textField.display();
     }
 }
