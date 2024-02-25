@@ -2,19 +2,19 @@ server:
   port: 8100
 logging:
   file:
-    name: /Users/wangpeng/MyCodeSpace/logs/arknights.log
+    name: /root/logs/chowder/arknights/arknights.log
 spring:
   application:
     name: Arknights
   datasource:
-    url: jdbc:mysql://localhost:3306/arknights
+    url: jdbc:mysql://localhost:3307/arknights
     username: root
-    password: rootroot
+    password: XdhRFUtkhRN8a4A
     driver-class-name: com.mysql.cj.jdbc.Driver
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.0.109:8848
+        server-addr: localhost:8473
         username: keroro
         password: keroro
 springdoc:
