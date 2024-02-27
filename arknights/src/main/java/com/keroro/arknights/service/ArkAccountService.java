@@ -90,10 +90,16 @@ public class ArkAccountService {
                 .one());
         account.orElseThrow(() -> new AccountNotFoundException("账号不存在"));
 
+        ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> params = new HashMap<>(2);
         params.put("phone", arkAccount);
         params.put("password", SecureUtil.aes(CryptConstant.AES_KEY.getBytes()).decryptStr(account.get().getArkPwd()));
-        String content = HttpUtil.post(loginUrl, params);
+        String content;
+        try {
+            content = HttpUtil.post(loginUrl, objectMapper.writeValueAsString(params));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("登录方法参数构造异常：" + e.getMessage());
+        }
 
         JsonNode node;
         try {
