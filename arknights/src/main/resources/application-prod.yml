@@ -12,6 +12,9 @@ spring:
     password: XdhRFUtkhRN8a4A
     driver-class-name: com.mysql.cj.jdbc.Driver
   cloud:
+    inetutils:
+#      不加这个默认会注册内网ip
+      preferred-networks: 1.94.23
     nacos:
       discovery:
         server-addr: localhost:8473
