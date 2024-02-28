@@ -1,5 +1,6 @@
 package com.keroro.arknights.service;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.http.HttpUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -58,13 +59,15 @@ public class ArkGachaService {
         }
         token.orElseThrow(() -> new RuntimeException("没有此账号的token"));
 
-        // 查询库里此账号最新的记录的抽卡时间，没有则为nul
-        Optional<GachaRecord> latestRecord = Optional.ofNullable(gachaRecordComponent.lambdaQuery()
+        // 查询库里此账号最新的记录的抽卡时间
+        List<GachaRecord> recordList = gachaRecordComponent.lambdaQuery()
                 .eq(GachaRecord::getArkAccount, arkAccount)
                 .orderByDesc(GachaRecord::getTime)
-                .list().get(0));
-        // 出现null值时这里是否会报错？
-        Integer latestTimestamp = latestRecord.map(gachaRecord -> Integer.valueOf(gachaRecord.getTimestamp())).orElse(0);
+                .list();
+        Integer latestTimestamp = 0;
+        if (CollectionUtil.isNotEmpty(recordList)) {
+            latestTimestamp = Integer.valueOf(recordList.get(0).getTimestamp());
+        }
 
         int page = 1;
         JsonNode node = getGachaRecord(token.get(), page, channelId);
