@@ -3,8 +3,6 @@ server:
 logging:
   file:
     name: /root/logs/chowder/arknights/arknights.log
-  level:
-    root: debug
 spring:
   application:
     name: Arknights
