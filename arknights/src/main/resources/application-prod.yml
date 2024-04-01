@@ -2,7 +2,7 @@ server:
   port: 8100
 logging:
   file:
-    name: /root/logs/chowder/arknights/arknights.log
+    name: logs/arknights.log
 spring:
   application:
     name: Arknights
