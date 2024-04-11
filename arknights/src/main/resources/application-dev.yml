@@ -1,8 +1,7 @@
 server:
   port: 8100
 logging:
-  file:
-    name: /Users/wangpeng/MyCodeSpace/logs/arknights.log
+  config: classpath:logback-spring.xml
 spring:
   application:
     name: Arknights
@@ -17,6 +16,7 @@ spring:
         server-addr: 192.168.0.109:8848
         username: keroro
         password: keroro
+        failure-tolerance-enabled: true
 springdoc:
   api-docs:
     path: /api-docs
