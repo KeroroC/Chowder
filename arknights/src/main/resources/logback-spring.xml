@@ -79,20 +79,20 @@
 
     <!-- 指定项目中某个包，当有日志操作行为时的日志记录级别 -->
     <!-- 级别依次为【从高到低】：FATAL > ERROR > WARN > INFO > DEBUG > TRACE  -->
-    <!--    <logger name="com.keroro.arknights" level="INFO">-->
+    <!--    <logger name="xyz.keroro.arknights" level="INFO">-->
     <!--        <appender-ref ref="info_log" />-->
     <!--        <appender-ref ref="error_log" />-->
     <!--    </logger>-->
 
     <!-- 利用logback输入mybatis的sql日志，
     注意：如果不加 additivity="false" 则此logger会将输出转发到自身以及祖先的logger中，就会出现日志文件中sql重复打印-->
-    <!--    <logger name="com.keroro.arknights.mapper" level="DEBUG" additivity="false">-->
+    <!--    <logger name="xyz.keroro.arknights.mapper" level="DEBUG" additivity="false">-->
     <!--        <appender-ref ref="info_log" />-->
     <!--        <appender-ref ref="error_log" />-->
     <!--    </logger>-->
 
     <!-- additivity=false代表禁止默认累计的行为，即com.atomikos中的日志只会记录到日志文件中，不会输出层次级别更高的任何appender-->
-    <!--    <logger name="com.keroro.arknights" level="INFO" additivity="false">-->
+    <!--    <logger name="xyz.keroro.arknights" level="INFO" additivity="false">-->
     <!--        <appender-ref ref="info_log"/>-->
     <!--        <appender-ref ref="error_log"/>-->
     <!--    </logger>-->

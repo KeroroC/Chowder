@@ -7,7 +7,7 @@
     <description>包含一些通用类</description>
 
     <parent>
-        <groupId>com.keroro</groupId>
+        <groupId>xyz.keroro</groupId>
         <artifactId>chowder</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>

@@ -9,7 +9,7 @@
         <version>3.2.6</version>
     </parent>
 
-    <groupId>com.keroro</groupId>
+    <groupId>xyz.keroro</groupId>
     <artifactId>chowder</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
