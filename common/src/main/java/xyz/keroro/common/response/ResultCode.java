@@ -14,7 +14,7 @@ public interface ResultCode {
     /**
      * 状态码
      */
-    int code();
+    String code();
 
     /**
      * 提示信息

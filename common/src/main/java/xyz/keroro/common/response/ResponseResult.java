@@ -15,22 +15,22 @@ public class ResponseResult<T> {
     /**
      * 状态码
      */
-    private int code;
+    private String code;
 
     /**
      * 提示信息
      */
-    private String message;
+    private String msg;
 
     /**
      * 接口数据
      */
     private T data;
 
-    public ResponseResult(boolean success, int code, String message, T data) {
+    public ResponseResult(boolean success, String code, String msg, T data) {
         this.success = success;
         this.code = code;
-        this.message = message;
+        this.msg = msg;
         this.data = data;
     }
 
@@ -42,20 +42,20 @@ public class ResponseResult<T> {
         this.success = success;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public T getData() {
@@ -78,7 +78,7 @@ public class ResponseResult<T> {
         return new ResponseResult<>(ResponseCode.FAIL.success(), ResponseCode.FAIL.code(), ResponseCode.FAIL.message(), data);
     }
 
-    public static <T> ResponseResult<T> fail(boolean success, int code, String message, T data) {
+    public static <T> ResponseResult<T> fail(boolean success, String code, String message, T data) {
         return new ResponseResult<>(success, code, message, data);
     }
 }
