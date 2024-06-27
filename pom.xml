@@ -23,6 +23,7 @@
         <module>arknights</module>
         <module>common</module>
         <module>miscellany</module>
+        <module>gateway</module>
     </modules>
 
     <properties>
