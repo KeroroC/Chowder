@@ -140,4 +140,17 @@
         </dependencies>
     </dependencyManagement>
 
+    <distributionManagement>
+        <repository>
+            <id>keroro-releases</id>
+            <name>keroro Repository</name>
+            <url>http://keroro.xyz:8081/repository/keroro-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>keroro-snapshots</id>
+            <name>keroro Snapshot Repository</name>
+            <url>http://keroro.xyz:8081/repository/keroro-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 </project>
