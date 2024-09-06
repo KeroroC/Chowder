@@ -1,7 +1,7 @@
 server:
   port: 8100
 logging:
-  config: classpath:logback-spring.xml
+  config: classpath:logback-spring-dev.xml
 spring:
   application:
     name: Arknights
